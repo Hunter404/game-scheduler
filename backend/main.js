@@ -20,7 +20,7 @@ const getDatabase = () => {
 app.use(cors())
 app.use(express.static('./../frontend/dist'))
 
-app.get('/schedule/:scheduleId', (req, res) => {
+app.get('/api/schedule/:scheduleId', (req, res) => {
     const data = getDatabase()
     const repo = data[req.params.scheduleId]
 
@@ -29,7 +29,7 @@ app.get('/schedule/:scheduleId', (req, res) => {
     return res.send(repo)
 });
 
-app.post('/schedule/:scheduleId', express.json(), function (req, res, next) {
+app.post('/api/schedule/:scheduleId', express.json(), function (req, res) {
     const data = getDatabase()
     const repo = data[req.params.scheduleId]
 
