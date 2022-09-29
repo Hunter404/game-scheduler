@@ -1,5 +1,3 @@
-import moment from "moment"
-
 export function getHoursBetween(start, end) {
   return (start >= end ? end + 24 : end) - start
 }
