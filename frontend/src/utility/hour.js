@@ -1,16 +1,17 @@
 export function getHoursBetween(start, end) {
   return (start >= end ? end + 24 : end) - start
 }
-  
+
+export function getPrintHour(hour) {
+  let displayHour = hour + Math.floor(new Date().getTimezoneOffset() / 60)
+
+  if (displayHour >= 24) displayHour -= 24
+
+  return `${String(displayHour).padStart(2, '0')}:00`
+}
+
 export function getPrintHours(hour) {
-  const displayHour = hour + Math.floor(new Date().getTimezoneOffset() / 60)
-
-  let beginHour = displayHour
-  let endHour = displayHour + 1
-  if (beginHour >= 24) beginHour -= 24
-  if (endHour >= 24) endHour -= 24
-
-  return `${beginHour}:00 - ${endHour}:00`
+  return `${getPrintHour(hour)} - ${getPrintHour(hour + 1)}`
 }
 
 export function getStyle(fraction) {

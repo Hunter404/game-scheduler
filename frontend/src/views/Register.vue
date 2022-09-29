@@ -86,10 +86,15 @@ export default {
   }),
   setup(props, context) {
     const scheduleStore = useScheduleStore();
-
-    scheduleStore.newSchedule(7, 17, 23);
-
     const scheduleId = useRoute().params.id
+
+    // todo: seperate edit and view data fields in Schedule.vue
+    scheduleStore.fetchSchedule(scheduleId);
+
+    const days = scheduleStore.days
+    const start = scheduleStore.start
+    const end = scheduleStore.end
+    scheduleStore.newSchedule(days, start, end);
     
     return {
       scheduleStore,
