@@ -80,8 +80,8 @@ export default {
   },
   data: () => ({
     form: {
-      name: "Hunter404",
-      id: "8940",
+      name: "",
+      id: "",
     }
   }),
   setup(props, context) {
