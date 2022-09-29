@@ -51,4 +51,4 @@ app.post('/schedule/:scheduleId', express.json(), function (req, res, next) {
     return res.sendStatus(200)
 });
 
-app.listen(8000);
+app.listen(8000, '0.0.0.0');
