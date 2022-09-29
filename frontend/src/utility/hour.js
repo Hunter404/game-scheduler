@@ -5,11 +5,14 @@ export function getHoursBetween(start, end) {
 }
   
 export function getPrintHours(hour) {
-  if (hour >= 24) hour -= 24
-
   const displayHour = hour + Math.floor(new Date().getTimezoneOffset() / 60)
 
-  return `${displayHour}:00 - ${displayHour + 1}:00`
+  let beginHour = displayHour
+  let endHour = displayHour + 1
+  if (beginHour >= 24) beginHour -= 24
+  if (endHour >= 24) endHour -= 24
+
+  return `${beginHour}:00 - ${endHour}:00`
 }
 
 export function getStyle(fraction) {
