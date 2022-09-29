@@ -1,3 +1,5 @@
+import moment from "moment"
+
 export function getHoursBetween(start, end) {
   return (start >= end ? end + 24 : end) - start
 }
@@ -5,9 +7,11 @@ export function getHoursBetween(start, end) {
 export function getPrintHours(hour) {
   if (hour >= 24) hour -= 24
 
-  return `${hour}:00 - ${hour + 1}:00`
+  const displayHour = hour + Math.floor(new Date().getTimezoneOffset() / 60)
+
+  return `${displayHour}:00 - ${displayHour + 1}:00`
 }
-  
+
 export function getStyle(fraction) {
   if (fraction < 0.05) {
     return "none"
