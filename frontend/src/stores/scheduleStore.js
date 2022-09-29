@@ -57,13 +57,13 @@ export const useScheduleStore = defineStore('schedule', {
           .fill()
           .map((_, y) => this.data[x][y].votes !== 0))
 
-      fetchWrapper.post(`http://127.0.0.1:8000/schedule/${id}`, {
+      fetchWrapper.post(`/schedule/${id}`, {
         user,
         data
       })
     },
     async fetchSchedule(id) {
-      const body = await fetchWrapper.get(`http://127.0.0.1:8000/schedule/${id}`)
+      const body = await fetchWrapper.get(`/schedule/${id}`)
 
       const days = body.days
       const hours = body.hours
