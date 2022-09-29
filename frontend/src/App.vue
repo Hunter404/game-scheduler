@@ -22,8 +22,6 @@ export default {
 </script>
 
 <style lang="scss">
-@use "sass:math";
-
 h1 {
   text-align: center;
   color: white;

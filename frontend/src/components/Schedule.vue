@@ -214,6 +214,7 @@ export default {
   }
 
   .tooltip {
+    display: none;
     pointer-events: none;
 
     padding: 0.5rem 2rem;
