@@ -24,7 +24,23 @@ export default {
         "https://i.redd.it/urz0f68zy7s61.png",
         "https://i.redd.it/h8rclwq4qaj81.png",
         "https://i.redd.it/8r588l9e35j71.png",
-        "https://i.redd.it/h4edhk36vka61.jpg"
+        "https://i.redd.it/h4edhk36vka61.jpg",
+        "https://i.redd.it/ays0fcpg94oa1.png",
+        "https://i.redd.it/6d9p0htg94oa1.png",
+        "https://i.redd.it/yzvt6iwg94oa1.png",
+        "https://i.redd.it/3g3o2ryg94oa1.png",
+        "https://i.redd.it/aw10wn1h94oa1.png",
+        "https://i.redd.it/nwsvgjuiw5oa1.jpg",
+        "https://i.redd.it/2q7ur6z3c4oa1.png",
+        "https://i.redd.it/meullal4pzna1.webp",
+        "https://i.redd.it/m0mn10z1ixna1.png",
+        "https://i.redd.it/d9ifz3um2yna1.jpg",
+        "https://i.redd.it/dzpda6hv3vna1.png",
+        "https://i.redd.it/ip4cyjej0xna1.png",
+        "https://i.redd.it/m513g1r060oa1.png",
+        "https://i.redd.it/zj4sk40pzwna1.png",
+        "https://i.redd.it/0xhwi0m69wna1.jpg",
+        "https://i.redd.it/r2fqbijbvpna1.jpg",
       ];
 
     return {
