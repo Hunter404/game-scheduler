@@ -85,16 +85,16 @@ export default {
     }
   }),
   setup(props, context) {
-    const scheduleStore = useScheduleStore();
+    const scheduleStore = useScheduleStore()
     const scheduleId = useRoute().params.id
 
     // todo: seperate edit and view data fields in Schedule.vue
     scheduleStore.fetchSchedule(scheduleId);
 
     const days = scheduleStore.days
-    const start = scheduleStore.start
-    const end = scheduleStore.end
-    scheduleStore.newSchedule(days, start, end);
+    const hourStart = scheduleStore.hourStart
+    const hourLength = scheduleStore.hourLength    
+    scheduleStore.newSchedule(days, hourStart, hourLength)
     
     return {
       scheduleStore,
@@ -112,7 +112,7 @@ export default {
       this.$router.push({ name: 'schedule.results', params: { id: this.scheduleId } })
     },
     reset() {
-      this.schedule.newSchedule(this.schedule.days, this.schedule.start, this.schedule.end)
+      this.schedule.newSchedule(this.schedule.days, this.schedule.hourStart, this.schedule.hourLength)
     },
     showResults() {
       this.$router.push({ name: 'schedule.results', params: { id: this.scheduleId } })

@@ -6,6 +6,11 @@ const routes = [
     path: '/schedule',
     children: [
       {
+        name: 'schedule.create',
+        path: 'create',
+        component: () => import("@/views/Create.vue"),
+      },
+      {
         name: 'schedule.register',
         path: ':id/register',
         component: () => import("@/views/Register.vue"),

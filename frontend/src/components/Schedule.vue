@@ -140,7 +140,7 @@ export default {
       return days[day]
     },
     toHour(hour) {
-      const h = this.schedule.start + hour
+      const h = this.schedule.hourStart + hour
       let textualHour = (h >= 24 ? h - 24 : h).toString()
       if (textualHour.length <= 1) {
         textualHour = '0' + textualHour

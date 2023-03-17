@@ -5,16 +5,14 @@ import { getHoursBetween, getPrintHours, getStyle } from '@/utility/hour'
 export const useScheduleStore = defineStore('schedule', {
   state() {
     const days = 7
-    const start = 17
-    const end = 23
-    const hours = getHoursBetween(start, end)
+    const hourStart = 17
+    const hourLength = 9
 
     return {
       readonly: false,
       days,
-      start,
-      end,
-      hours,
+      hourStart,
+      hourLength,
       data: [],
       users: {}
     }
@@ -25,18 +23,16 @@ export const useScheduleStore = defineStore('schedule', {
   actions: {
     set(hour, value) {
       hour.votes = value ? 1 : 0
-      hour.style = value ? 'perfect' : 'none'
+      hour.style = value ? 'perfect' : ''
     },
-    newSchedule(days, hourStart, hourEnd) {
-      if (!days || !hourStart || !hourEnd) {
+    newSchedule(days, hourStart, hourLength) {
+      if (!days || !hourStart || !hourLength) {
         throw new Error("Cannot be undefined")
       }
 
-      const start = hourStart
-      const end = hourEnd
-      const hours = getHoursBetween(start, end)
+      const hours = getHoursBetween(hourStart, hourStart + hourLength)
       const data = new Array(days).fill().map(_ => new Array(hours).fill().map((_, i) => ({
-        range: getPrintHours(start + i),
+        range: getPrintHours(hourStart + i),
         voters: null,
         votes: 0,
         style: 'none',
@@ -44,16 +40,23 @@ export const useScheduleStore = defineStore('schedule', {
 
       this.$patch({
         days,
-        start,
-        end,
+        hourStart,
+        hourLength,
         hours,
         data,
       })
     },
+    async submitNewSchedule(form) {
+      const body = await fetchWrapper.post(`/api/schedule/create`, {
+        form
+      })
+
+      return body.id
+    },
     async submitSchedule(id, user) {
       const data = new Array(this.days)
         .fill()
-        .map((_, x) => new Array(this.hours)
+        .map((_, x) => new Array(this.hourLength)
           .fill()
           .map((_, y) => this.data[x][y].votes !== 0))
 
@@ -66,16 +69,15 @@ export const useScheduleStore = defineStore('schedule', {
       const body = await fetchWrapper.get(`/api/schedule/${id}`)
 
       const days = body.days
-      const hours = body.hours
-      const start = body.startHour
-      const end = body.endHour
+      const hourStart = body.hourStart
+      const hourLength = body.hourLength
 
       const data = new Array(days)
         .fill()
-        .map((_) => new Array(hours)
+        .map((_) => new Array(hourLength)
           .fill()
           .map((_, i) => ({
-            range: getPrintHours(start + i),
+            range: getPrintHours(hourStart + i),
             voters: [],
             votes: 0,
             style: 'none',
@@ -85,7 +87,7 @@ export const useScheduleStore = defineStore('schedule', {
 
       body.data.forEach((item, i) => {
         for (let x = 0; x < days; x++) {
-          for (let y = 0; y < hours; y++) {
+          for (let y = 0; y < hourLength; y++) {
             if (!item.schedule[x][y]) continue
 
             data[x][y].voters.push(item.user)
@@ -95,18 +97,17 @@ export const useScheduleStore = defineStore('schedule', {
       })
 
       for (let x = 0; x < days; x++) {
-        for (let y = 0; y < hours; y++) {
+        for (let y = 0; y < hourLength; y++) {
           const fraction = data[x][y].votes / body.data.length
 
-          data[x][y].style = getStyle(fraction)
+          data[x][y].style = this.readonly ? '' : getStyle(fraction)
         }
       }
 
       this.$patch({
         days,
-        start,
-        end,
-        hours,
+        hourStart,
+        hourLength,
         data,
         users,
       })

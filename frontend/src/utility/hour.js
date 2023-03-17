@@ -3,9 +3,7 @@ export function getHoursBetween(start, end) {
 }
 
 export function getPrintHour(hour) {
-  let displayHour = hour + Math.floor(new Date().getTimezoneOffset() / 60)
-
-  if (displayHour >= 24) displayHour -= 24
+  let displayHour = (hour + Math.floor(new Date().getTimezoneOffset() / 60)) % 24
 
   return `${String(displayHour).padStart(2, '0')}:00`
 }
