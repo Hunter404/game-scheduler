@@ -13,19 +13,17 @@ export function getPrintHours(hour) {
 }
 
 export function getStyle(fraction) {
-  if (fraction < 0.05) {
+  if (fraction < 0.1) {
     return "none"
   }
-  if (fraction < 0.2) {
+  if (fraction < 0.25) {
     return "low"
   }
-  if (fraction < 0.6) {
+  if (fraction < 0.65) {
     return "medium"
   }
-  if (fraction < 0.8) {
+  if (fraction < 0.9) {
     return "high"
   }
-  if (fraction > 0.95) {
-    return "perfect"
-  }
+  return "perfect"
 }
