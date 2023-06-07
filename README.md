@@ -1,5 +1,5 @@
 # Game Scheduler
-[Screenshot of the application](https://github.com/Hunter404/game-scheduler/blob/master/example.png)
+![Screenshot of the application](https://github.com/Hunter404/game-scheduler/blob/master/example.png)
 An attempt to improve the logistics of planning when we should host our game-nights. Very hardcoded for Barotrauma but shouldn't require too much effort to be used for other games :()
 
 ## Setup
